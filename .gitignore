@@ -1,0 +1,27 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+
+# Pruebas
+.pytest_cache/
+
+# Editores e IDE
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Archivos generados por la app
+*.pdf
+!docs/*.pdf
+problema.json
