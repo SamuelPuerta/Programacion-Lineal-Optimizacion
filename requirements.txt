@@ -1,0 +1,8 @@
+streamlit>=1.35
+matplotlib
+numpy
+pandas
+fpdf2
+# solo para verificar en tests (no se usa en la app):
+scipy
+pytest
