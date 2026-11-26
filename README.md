@@ -35,9 +35,17 @@ python -m pytest -q tests
 | `modelo.py`       | Problema, validación de entrada, JSON                 |
 | `simplex.py`      | Gran M; devuelve la lista de pasos (sin imprimir)     |
 | `sensibilidad.py` | Precios sombra, costos reducidos, rangos de c y de LD |
-| `grafico.py`      | Método gráfico (n = 2)                                |
+| `grafico.py`      | Método gráfico interactivo (Plotly) con línea de tiempo (n = 2) |
 | `reporte.py`      | Texto y PDF del paso a paso                           |
 | `ejemplos.py`     | Los 7 problemas del enunciado                         |
+
+## Método gráfico
+
+Con 2 variables, la pestaña **Método gráfico** usa Plotly (interactivo: zoom,
+paneo, tooltips). Un control deslizante de *línea de tiempo* reconstruye el
+resultado paso a paso: se añaden las restricciones una por una, la región
+factible se va recortando, luego se marcan los vértices con su `Z` y, si hay
+óptimo, se traza la recta de isoutilidad y el punto óptimo.
 
 ## Dónde modificar
 

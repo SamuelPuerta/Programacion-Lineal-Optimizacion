@@ -25,3 +25,6 @@ Thumbs.db
 *.pdf
 !docs/*.pdf
 problema.json
+
+# Herramientas / capturas temporales
+.playwright-mcp/
