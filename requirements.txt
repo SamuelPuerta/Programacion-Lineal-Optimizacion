@@ -1,5 +1,5 @@
-streamlit>=1.35
-matplotlib
+streamlit>=1.49
+plotly>=5.0
 numpy
 pandas
 fpdf2
