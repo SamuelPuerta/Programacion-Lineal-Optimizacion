@@ -106,6 +106,27 @@ def test_grafico_todos():
             if i == 5: assert info["no_acotada"]
         else: assert fig is None
 
+def test_grafico_plotly_timeline():
+    import plotly.graph_objects as go
+    for i in range(1, 8):
+        pr = P(i); r = resolver(pr); fig, info = grafico(pr, r)
+        if pr.n != 2:
+            assert fig is None
+            continue
+        assert isinstance(fig, go.Figure)
+        steps = fig.layout.sliders[0].steps
+        ntraces = len(fig.data)
+        # m pasos de restricciones + 1 de vértices + (1 óptimo | 1 final si hay región)
+        extra = 1 if r.get("status") == "optimal" else (1 if info["vertices"] else 0)
+        assert len(steps) == pr.m + 1 + extra, (i, len(steps))
+        for s in steps:
+            assert len(s.args[0]["visible"]) == ntraces
+        # el paso final muestra todas las trazas salvo las regiones parciales intermedias
+        assert sum(steps[-1].args[0]["visible"]) == ntraces - (pr.m - 1)
+        assert steps[0].args[0]["visible"][0] is True       # primera restricción visible
+        assert sum(steps[0].args[0]["visible"]) == 2        # solo R1 y su región
+        assert fig.to_json()                                # serializa sin Fraction
+
 def test_pdf_y_json():
     pr = P(2); r = resolver(pr); b = pdf_bytes(texto(pr, r, sensibilidad(pr, r))); assert b[:4] == b"%PDF"
     pr2, e = desde_dict(pr.to_dict()); assert not e and pr2.c == pr.c and pr2.b == pr.b and resolver(pr2)["Z"] == r["Z"]
