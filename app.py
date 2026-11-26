@@ -111,7 +111,7 @@ with t2:
     if fig is None: st.info(info["mensaje"])
     else:
         if info["mensaje"]: st.warning(info["mensaje"])
-        st.pyplot(fig)
+        st.plotly_chart(fig, width="stretch")
         if info["vertices"]:
             st.dataframe(pd.DataFrame([(str(a), str(b), str(z)) for a, b, z in info["vertices"]],
                                       columns=["x1", "x2", "Z"]), hide_index=True)
